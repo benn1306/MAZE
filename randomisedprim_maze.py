@@ -176,22 +176,26 @@ class Maze:
                 self.maze = [["u"for _ in range(self.width)]for _ in range(self.height)]
                 self.randomise_maze()
         
-
+#so i can use this in other things if i want
 if __name__ == "__main__":
     maze = Maze()
     maze.draw_maze()
 
     run = True
+    #setting up pygame shenanigans
     screen = pg.display.set_mode((1000,600))
 
     while run:
         maze.screen_maze(screen) 
+        #looking if anything happens
         for event in pg.event.get():
+            #quit obv
             if event.type == pg.QUIT:
                 run = False
+            #giving the keyboard inputs to movement handler (that sounds way fancier than it is)
             if event.type == pg.KEYDOWN:
                 key = event
                 maze.maze_move(key)
-
+    #no errors for ending the program without quitting the window, please
     pg.quit()
 
